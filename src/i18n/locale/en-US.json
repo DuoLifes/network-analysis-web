@@ -1,0 +1,11 @@
+﻿{
+    "app": {
+        "title": "Network Analysis"
+    },
+    "menu": {
+        "用户分析": "User Analysis",
+        "首页": "Home",
+        "登录": "Login"
+    },
+    "language": "Language"
+}
