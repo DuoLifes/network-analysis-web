@@ -1,37 +1,74 @@
-// 暗色主题样式文件
-// 仅影响 .chart-container 容器内的元素 
+/**
+ * ==========================================================================
+ * 暗色主题样式文件
+ * ==========================================================================
+ * 
+ * 功能说明：
+ * - 定义暗色主题的颜色、背景、边框等视觉样式
+ * - 仅影响 .chart-container.theme-dark 容器内的元素
+ * - 与 chart.scss 配合使用，提供完整的暗色主题体验
+ * 
+ * 样式分类：
+ * 1. CSS变量定义
+ * 2. 页面容器主题样式
+ * 3. 图表组件主题样式
+ * 4. Element Plus组件主题覆盖
+ * 5. 用户分析页面主题样式
+ * 6. 滚动条主题样式
+ * 
+ * ==========================================================================
+ */
 
 .chart-container.theme-dark {
-  // CSS 变量定义 - 暗色主题 (基于示例图的色调)
-  --bg-primary: #2a2a2a;           // 卡片背景 - 深灰色
-  --bg-secondary: #1a1a1a;         // 主背景 - 更深的黑灰色
+  /* ==========================================================================
+     CSS变量定义 - 暗色主题
+     ========================================================================== */
+  
+  // 背景色系
+  --bg-primary: #383838;           // 卡片背景 - 深灰色
+  --bg-secondary: #242424;         // 主背景 - 更深的黑灰色
   --bg-tertiary: #363636;          // 第三级背景 - 稍浅的灰色
   --bg-hover: #404040;             // 悬停背景
+  
+  // 文字色系
   --text-primary: #ffffff;         // 主要文字 - 纯白色
   --text-secondary: #cccccc;       // 次要文字 - 浅灰色
   --text-tertiary: #999999;        // 第三级文字 - 中灰色
+  
+  // 边框色系
   --border-color: #404040;         // 主要边框
   --border-color-light: #4a4a4a;   // 浅色边框
   --border-color-lighter: #555555; // 更浅边框
+  
+  // 阴影效果
   --shadow-color: rgba(0, 0, 0, 0.4);
   --shadow-light: rgba(0, 0, 0, 0.25);
   
-  // 图表容器背景
+  // 主题色
+  --primary-color: #409eff;        // 主题蓝色
+
+  /* ==========================================================================
+     页面容器主题样式
+     ========================================================================== */
+  
+  // 主容器背景和过渡效果
   background-color: var(--bg-secondary);
   color: var(--text-primary);
-  transition: background-color 0.3s ease, color 0.3s ease;
   
   // 图表布局容器
   .chart-layout-container {
     background-color: var(--bg-secondary);
   }
+
+  /* ==========================================================================
+     图表组件主题样式
+     ========================================================================== */
   
   // 图表卡片样式
   .chart-column-card {
     background-color: var(--bg-primary);
     border: 1px solid var(--border-color);
     box-shadow: 0 4px 12px var(--shadow-light);
-    border-radius: 8px;
     
     &:hover {
       box-shadow: 0 6px 20px var(--shadow-color);
@@ -46,20 +83,6 @@
     
     .chart-title {
       color: var(--text-primary);
-      font-weight: 600;
-    }
-    
-    .chart-toolbar .toolbar-item {
-      background-color: var(--bg-tertiary);
-      color: var(--text-secondary);
-      border: 1px solid var(--border-color);
-      border-radius: 6px;
-      
-      &:hover {
-        background-color: #409eff;
-        color: #ffffff;
-        border-color: #409eff;
-      }
     }
   }
   
@@ -67,13 +90,29 @@
   .chart-content {
     background-color: var(--bg-primary);
   }
+
+  // 图表工具栏
+  .chart-toolbar .toolbar-item {
+    background-color: var(--bg-tertiary);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    
+    &:hover {
+      background-color: var(--primary-color);
+      color: #ffffff;
+      border-color: var(--primary-color);
+    }
+  }
+
+  /* ==========================================================================
+     Element Plus组件主题覆盖
+     ========================================================================== */
   
-  // Element Plus 组件样式覆盖
+  // 卡片组件
   .el-card {
     background-color: var(--bg-primary);
     border: 1px solid var(--border-color);
     box-shadow: 0 4px 12px var(--shadow-light);
-    border-radius: 8px;
     
     .el-card__header {
       background-color: var(--bg-primary);
@@ -93,7 +132,7 @@
     }
   }
   
-  // 下拉选择器样式
+  // 下拉选择器
   .el-select {
     .el-input .el-input__wrapper {
       background-color: var(--bg-primary);
@@ -107,14 +146,12 @@
     
     .el-input:hover .el-input__wrapper,
     .el-input.is-focus .el-input__wrapper {
-      border-color: #409eff;
+      border-color: var(--primary-color);
     }
   }
   
-  // 按钮样式
+  // 按钮组件
   .el-button {
-    border-radius: 6px;
-    
     &.is-plain {
       background-color: var(--bg-primary);
       border: 1px solid var(--border-color);
@@ -122,14 +159,14 @@
       
       &:hover {
         background-color: var(--bg-hover);
-        border-color: #409eff;
-        color: #409eff;
+        border-color: var(--primary-color);
+        color: var(--primary-color);
       }
     }
     
     &--primary {
-      background-color: #409eff;
-      border-color: #409eff;
+      background-color: var(--primary-color);
+      border-color: var(--primary-color);
       
       &:hover {
         background-color: #66b3ff;
@@ -138,29 +175,16 @@
     }
   }
   
-  // 图标按钮样式
+  // 图标样式
   .el-icon {
     color: var(--text-secondary);
     
     &:hover {
-      color: #409eff;
+      color: var(--primary-color);
     }
   }
   
-  // 文本样式
-  .chart-title {
-    color: var(--text-primary);
-  }
-  
-  .chart-subtitle {
-    color: var(--text-secondary);
-  }
-  
-  .chart-description {
-    color: var(--text-tertiary);
-  }
-  
-  // 下拉框弹出层样式
+  // 下拉框弹出层
   .el-popper {
     background-color: var(--bg-primary) !important;
     border: 1px solid var(--border-color) !important;
@@ -172,17 +196,91 @@
       
       &:hover {
         background-color: var(--bg-hover);
-        color: #409eff;
+        color: var(--primary-color);
       }
       
       &.selected {
-        background-color: #409eff;
+        background-color: var(--primary-color);
         color: #ffffff;
       }
     }
   }
+
+  /* ==========================================================================
+     用户分析页面主题样式
+     ========================================================================== */
   
-  // 滚动条样式
+  // 筛选器主题样式
+  .filter-header {
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .left-filters {
+    :deep(.el-tabs__item) {
+      color: var(--text-secondary);
+    }
+
+    :deep(.el-tabs__item.is-active) {
+      color: var(--primary-color);
+    }
+  }
+
+  // 用户统计区域主题样式
+  .user-stats-section {
+    background: var(--bg-secondary);
+    box-shadow: 0 4px 12px var(--shadow-light);
+  }
+
+  .grid-container {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 1), 0 4px 4px rgba(0, 0, 0, 1);
+  }
+
+  .grid-item-merged,
+  .grid-item {
+    background: var(--bg-primary);
+  }
+
+  // 标题覆盖层主题样式
+  .section-title-overlay {
+    color: var(--text-primary);
+
+    // 标题装饰条 - 暗色主题发光效果
+    &::before {
+      background: linear-gradient(135deg, var(--primary-color) 0%, #66b3ff 50%, var(--primary-color) 100%);
+      box-shadow: 0 0 8px rgba(64, 158, 255, 0.3);
+    }
+  }
+
+  // 文字主题样式
+  .main-title {
+    color: var(--text-primary);
+  }
+
+  .sub-title {
+    color: var(--text-secondary);
+  }
+
+  .stat-count,
+  .stat-percent {
+    color: var(--text-primary);
+  }
+
+  .stat-label {
+    color: var(--text-secondary);
+  }
+
+  // 进度条主题样式
+  .progress-bar {
+    background: var(--bg-tertiary);
+  }
+
+  /* ==========================================================================
+     滚动条主题样式
+     ========================================================================== */
+  
   ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
@@ -201,74 +299,4 @@
       background-color: var(--text-tertiary);
     }
   }
-
-  /* ==========================================================================
-     用户分析页面主题样式 (从 userAnalysis.scss 迁移)
-     ========================================================================== */
-
-  /* 筛选器主题样式 */
-  .filter-header {
-    background: var(--bg-primary);
-    border-bottom: 1px solid var(--border-color);
-  }
-
-  .left-filters {
-    :deep(.el-tabs__item) {
-      color: var(--text-secondary);
-    }
-
-    :deep(.el-tabs__item.is-active) {
-      color: var(--primary-color, #409eff);
-    }
-  }
-
-  /* 用户统计区域主题样式 */
-  .user-stats-section {
-    background: var(--bg-secondary);
-    box-shadow: 0 4px 12px var(--shadow-light);
-  }
-
-  .grid-container {
-    background: var(--bg-primary);
-    border: 1px solid var(--border-color);
-    box-shadow: 0 4px 12px var(--shadow-light);
-  }
-
-  .grid-item-merged,
-  .grid-item {
-    background: var(--bg-primary);
-  }
-
-  /* 标题覆盖层主题样式 */
-  .section-title-overlay {
-    color: var(--text-primary);
-
-    /* 标题装饰条 - 暗色主题 */
-    &::before {
-      background: linear-gradient(135deg, #409eff 0%, #66b3ff 50%, #409eff 100%);
-    }
-  }
-
-  /* 文字主题样式 */
-  .main-title {
-    color: var(--text-primary);
-  }
-
-  .sub-title {
-    color: var(--text-secondary);
-  }
-
-  .stat-count,
-  .stat-percent {
-    color: var(--text-primary);
-  }
-
-  .stat-label {
-    color: var(--text-secondary);
-  }
-
-  /* 进度条主题样式 */
-  .progress-bar {
-    background: #333;
-  }
-} 
+}

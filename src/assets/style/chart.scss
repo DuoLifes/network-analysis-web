@@ -1,77 +1,56 @@
 ﻿/**
  * ==========================================================================
- * 图表组件统一样式文件
+ * 图表组件统一样式文件 - 布局与基础样式
  * ==========================================================================
  * 
  * 功能说明：
- * - 统一管理所有图表相关组件的样式
+ * - 定义图表组件的基础布局样式（不涉及颜色主题）
  * - 提供响应式布局支持
- * - 使用CSS变量方便主题切换
- * - 确保与系统其他组件的样式一致性
+ * - 管理组件结构和交互效果
+ * - 确保与系统其他组件的布局一致性
  * 
- * 组件层级：
- * chart-container (页面容器)
- *   └── chart-layout-container (布局容器)
- *       └── chart-row-container (行容器)
- *           └── chart-column-card (列容器/卡片)
- *               ├── chart-header (图表头部)
- *               └── chart-content (图表内容)
+ * 样式分类：
+ * 1. 页面级容器布局
+ * 2. 图表组件布局
+ * 3. 用户分析页面专用布局
+ * 4. 响应式适配
+ * 
+ * 注意：颜色、背景、边框等主题相关样式在 dark-theme.scss 和 light-theme.scss 中定义
  * 
  * ==========================================================================
  */
 
 /* ==========================================================================
-   CSS 变量定义
-   ========================================================================== */
-:root {
-  // 图表主题色彩
-  --chart-bg-color: #ffffff;
-  --chart-border-color: #e4e7ed;
-  --chart-primary-color: #409eff;
-  --chart-title-color: #303133;
-  --chart-text-color: #666666;
-  
-  // 阴影效果
-  --chart-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  --chart-shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
-  
-  // 尺寸规范
-  --chart-border-radius: 8px;
-  --chart-header-bg: #fafafa;
-}
-
-/* ==========================================================================
-   页面级容器
+   页面级容器布局
    ========================================================================== */
 
 /**
- * 用户分析页面主容器
+ * 图表页面主容器
+ * - 页面级布局框架
  * - 与系统tabs组件保持对齐
- * - 负责页面级布局和背景色
  */
 .chart-container {
   min-height: calc(100vh - 200px);
-  background-color: #f5f7fa;
   margin: 15px 20px 0 20px;
   flex: 1;
   overflow: visible;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /**
  * 图表布局主容器
  * - 提供统一的内边距
- * - 白色背景承载图表内容
+ * - 承载图表内容的主要区域
  */
 .chart-layout-container {
   width: 100%;
   min-height: 100%;
   padding: 20px;
-  background-color: var(--chart-bg-color);
   box-sizing: border-box;
 }
 
 /* ==========================================================================
-   图表布局组件
+   图表组件布局
    ========================================================================== */
 
 /**
@@ -91,33 +70,24 @@
 
 /**
  * 图表列容器（卡片）
- * - 统一的卡片样式
+ * - 统一的卡片布局
  * - 悬停效果和过渡动画
  * - 响应式高度调整
  */
 .chart-column-card {
   height: 100%;
   min-height: 300px;
-  border: 1px solid var(--chart-border-color);
-  border-radius: var(--chart-border-radius);
-  box-shadow: var(--chart-shadow);
-  background-color: var(--chart-bg-color);
+  border-radius: 8px;
   overflow: hidden;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   
   &:hover {
-    box-shadow: var(--chart-shadow-hover);
-    border-color: var(--chart-primary-color);
     transform: translateY(-2px);
   }
 }
 
-/* ==========================================================================
-   图表内容组件
-   ========================================================================== */
-
 /**
- * 图表头部区域
+ * 图表头部区域布局
  * - 包含标题和操作按钮
  * - 响应式字体大小
  */
@@ -130,7 +100,6 @@
     font-weight: 600;
     font-size: 16px;
     line-height: 1.5;
-    color: var(--chart-title-color);
     margin: 0;
   }
   
@@ -142,7 +111,7 @@
 }
 
 /**
- * 图表内容区域
+ * 图表内容区域布局
  * - ECharts 图表的容器
  * - 确保图表正确填充空间
  */
@@ -165,7 +134,7 @@
 }
 
 /**
- * 图表工具栏
+ * 图表工具栏布局
  * - 导出、刷新等操作按钮
  * - 统一的交互样式
  */
@@ -179,16 +148,9 @@
     align-items: center;
     padding: 4px 8px;
     font-size: 12px;
-    color: var(--chart-text-color);
-    background-color: #f0f2f5;
     border-radius: 4px;
     cursor: pointer;
     transition: all 0.2s ease;
-    
-    &:hover {
-      background-color: var(--chart-primary-color);
-      color: #ffffff;
-    }
     
     .el-icon {
       margin-right: 4px;
@@ -197,125 +159,7 @@
 }
 
 /* ==========================================================================
-   响应式布局
-   ========================================================================== */
-
-/**
- * 移动端适配 (< 576px)
- * - 减小边距和内边距
- * - 调整字体大小
- * - 优化触摸体验
- */
-@media (max-width: 576px) {
-  .chart-container {
-    margin: 15px 10px 0 10px;
-    min-height: calc(100vh - 140px);
-  }
-  
-  .chart-layout-container {
-    padding: 10px;
-  }
-  
-  .chart-row-container .el-row .el-col {
-    margin-bottom: 15px;
-  }
-  
-  .chart-column-card {
-    min-height: 200px;
-  }
-  
-  .chart-header {
-    padding: 12px 15px;
-    
-    .chart-title {
-      font-size: 14px;
-    }
-  }
-  
-  // 确保tabs组件也相应调整
-  .tabs {
-    margin: 0 10px;
-  }
-}
-
-/**
- * 平板端适配 (577px - 768px)
- * - 中等屏幕的优化调整
- */
-@media (min-width: 577px) and (max-width: 768px) {
-  .chart-container {
-    min-height: calc(100vh - 150px);
-  }
-  
-  .chart-layout-container {
-    padding: 15px;
-  }
-  
-  .chart-row-container .el-row .el-col {
-    margin-bottom: 20px;
-  }
-  
-  .chart-column-card {
-    min-height: 250px;
-  }
-}
-
-/**
- * 垂直空间限制适配 (高度 < 600px)
- * - 针对小屏幕笔记本等设备
- */
-@media (max-height: 600px) {
-  .chart-container {
-    min-height: auto;
-  }
-  
-  .chart-layout-container {
-    padding: 10px;
-  }
-  
-  .chart-row-container {
-    margin-bottom: 15px;
-  }
-  
-  .chart-column-card {
-    min-height: 200px;
-  }
-}
-
-/**
- * 中等高度屏幕适配 (600px - 800px)
- */
-@media (min-height: 601px) and (max-height: 800px) {
-  .chart-layout-container {
-    padding: 15px;
-  }
-  
-  .chart-column-card {
-    min-height: 250px;
-  }
-}
-
-/**
- * 超大屏幕优化 (≥ 1920px)
- * - 增加内边距提升视觉效果
- * - 调整最小高度适应大屏
- */
-@media (min-width: 1920px) {
-  .chart-layout-container {
-    padding: 15px;
-  }
-  
-  .chart-column-card {
-    min-height: 350px;
-  }
-  
-  .chart-content {
-    min-height: 250px;
-  }
-}
-
-/* ==========================================================================
-   用户分析页面布局组件 (从 userAnalysis.scss 迁移)
+   用户分析页面专用布局组件
    ========================================================================== */
 
 /**
@@ -326,10 +170,11 @@
   justify-content: space-between;
   align-items: center;
   padding: 16px 20px;
-  border-bottom: 1px solid var(--border-color, #333);
 }
 
-/* 左侧Tab筛选器布局 */
+/**
+ * 左侧Tab筛选器布局
+ */
 .left-filters {
   :deep(.el-tabs__header) {
     margin: 0;
@@ -344,7 +189,9 @@
   }
 }
 
-/* 右侧筛选器组布局 */
+/**
+ * 右侧筛选器组布局
+ */
 .right-filters {
   display: flex;
   align-items: center;
@@ -358,7 +205,11 @@
   border-radius: 8px;
 }
 
-/* 网格布局容器 */
+/**
+ * 网格布局容器
+ * - 用户分析页面的核心布局
+ * - 采用CSS Grid实现复杂布局
+ */
 .grid-container {
   display: grid;
   grid-template-columns: 15% 1.5fr 0.5fr 1.5fr;
@@ -369,7 +220,9 @@
   overflow: hidden;
 }
 
-/* 网格项目布局 */
+/**
+ * 网格项目布局
+ */
 .grid-item-merged {
   grid-column: 1;
   grid-row: 1 / 3;
@@ -432,6 +285,7 @@
 .stat-label {
   margin-bottom: 8px;
   text-align: center;
+  font-size: 12px;
 }
 
 /**
@@ -481,12 +335,174 @@
   display: flex;
   align-items: center;
 
-  /* 标题前的装饰条布局 */
+  /* 标题装饰条布局 */
   &::before {
     content: '';
     width: 4px;
     height: 20px;
     border-radius: 2px;
     margin-right: 10px;
+  }
+}
+
+/**
+ * 文字样式布局
+ */
+.main-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.sub-title {
+  font-size: 12px;
+}
+
+.stat-count,
+.stat-percent {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   响应式布局适配
+   ========================================================================== */
+
+/**
+ * 移动端适配 (< 576px)
+ * - 减小边距和内边距
+ * - 调整字体大小
+ * - 优化触摸体验
+ */
+@media (max-width: 576px) {
+  .chart-container {
+    margin: 15px 10px 0 10px;
+    min-height: calc(100vh - 140px);
+  }
+  
+  .chart-layout-container {
+    padding: 10px;
+  }
+  
+  .chart-row-container .el-row .el-col {
+    margin-bottom: 15px;
+  }
+  
+  .chart-column-card {
+    min-height: 200px;
+  }
+  
+  .chart-header {
+    padding: 12px 15px;
+    
+    .chart-title {
+      font-size: 14px;
+    }
+  }
+
+  /* 用户分析页面移动端适配 */
+  .grid-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto auto;
+    gap: 15px;
+  }
+
+  .grid-item-merged { grid-column: 1; grid-row: 1; }
+  .grid-item-1-merged { grid-column: 1; grid-row: 2; }
+  .grid-item-2-2 { grid-column: 1; grid-row: 3; }
+  .grid-item-2-3 { grid-column: 1; grid-row: 4; }
+  .grid-item-2-4 { grid-column: 1; grid-row: 5; }
+  
+  .section-title-overlay {
+    position: static;
+    margin-bottom: 15px;
+  }
+}
+
+/**
+ * 平板端适配 (577px - 768px)
+ * - 中等屏幕的优化调整
+ */
+@media (min-width: 577px) and (max-width: 768px) {
+  .chart-container {
+    min-height: calc(100vh - 150px);
+  }
+  
+  .chart-layout-container {
+    padding: 15px;
+  }
+  
+  .chart-row-container .el-row .el-col {
+    margin-bottom: 20px;
+  }
+  
+  .chart-column-card {
+    min-height: 250px;
+  }
+
+  /* 用户分析页面平板端适配 */
+  .grid-container {
+    grid-template-columns: 20% 1fr 1fr;
+    grid-template-rows: 120px 250px 250px;
+  }
+
+  .grid-item-merged { grid-column: 1; grid-row: 1 / 3; }
+  .grid-item-1-merged { grid-column: 2 / 4; grid-row: 1; }
+  .grid-item-2-2 { grid-column: 2; grid-row: 2; }
+  .grid-item-2-3 { grid-column: 3; grid-row: 2; }
+  .grid-item-2-4 { grid-column: 2 / 4; grid-row: 3; }
+}
+
+/**
+ * 垂直空间限制适配 (高度 < 600px)
+ * - 针对小屏幕笔记本等设备
+ */
+@media (max-height: 600px) {
+  .chart-container {
+    min-height: auto;
+  }
+  
+  .chart-layout-container {
+    padding: 10px;
+  }
+  
+  .chart-row-container {
+    margin-bottom: 15px;
+  }
+  
+  .chart-column-card {
+    min-height: 200px;
+  }
+}
+
+/**
+ * 中等高度屏幕适配 (600px - 800px)
+ */
+@media (min-height: 601px) and (max-height: 800px) {
+  .chart-layout-container {
+    padding: 15px;
+  }
+  
+  .chart-column-card {
+    min-height: 250px;
+  }
+}
+
+/**
+ * 超大屏幕优化 (≥ 1920px)
+ * - 增加内边距提升视觉效果
+ * - 调整最小高度适应大屏
+ */
+@media (min-width: 1920px) {
+  .chart-layout-container {
+    padding: 15px;
+  }
+  
+  .chart-column-card {
+    min-height: 350px;
+  }
+  
+  .chart-content {
+    min-height: 250px;
   }
 }
