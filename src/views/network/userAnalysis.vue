@@ -35,18 +35,16 @@
         <!-- 左侧合并容器：跨两行 -->
         <div class="grid-item-merged">
           <div class="merged-section">
-            <div class="main-title">XX</div>
-            <div class="indicator-text">
-              <div>在线用户数/</div>
-              <div>用户总数</div>
+            <div class="user-data-number">{{ onlineUsers }}/{{ totalUsers }}</div>
+            <div class="user-data-container">
+              <div class="user-data-label">在线用户数/用户总数</div>
             </div>
           </div>
           
           <div class="merged-section">
-            <div class="main-title">XX</div>
-            <div class="indicator-text">
-              <div>2.4G用户数/</div>
-              <div>5G用户数</div>
+            <div class="user-data-number">{{ users24G }}/{{ users5G }}</div>
+            <div class="user-data-container">
+              <div class="user-data-label">2.4G用户数/5G用户数</div>
             </div>
           </div>
         </div>
@@ -55,36 +53,36 @@
         <div class="grid-item grid-item-1-merged">
           <div class="stats-horizontal">
             <div class="stat-item">
-              <div class="stat-header">
-                <span class="stat-count">XXX人</span>
-                <span class="stat-percent">70%</span>
+              <div class="stat-count">{{ excellentCount }}人</div>
+              <div class="progress-bar-container">
+                <div class="progress-bar">
+                  <div class="progress-fill excellent-fill" :style="{ width: excellentPercent + '%' }"></div>
+                </div>
+                <div class="stat-percent">{{ excellentPercent }}%</div>
               </div>
               <div class="stat-label">优秀</div>
-              <div class="progress-bar">
-                <div class="progress-fill excellent-fill" style="width: 70%"></div>
-              </div>
             </div>
             
             <div class="stat-item">
-              <div class="stat-header">
-                <span class="stat-count">XX人</span>
-                <span class="stat-percent">20%</span>
+              <div class="stat-count">{{ goodCount }}人</div>
+              <div class="progress-bar-container">
+                <div class="progress-bar">
+                  <div class="progress-fill good-fill" :style="{ width: goodPercent + '%' }"></div>
+                </div>
+                <div class="stat-percent">{{ goodPercent }}%</div>
               </div>
               <div class="stat-label">良好</div>
-              <div class="progress-bar">
-                <div class="progress-fill good-fill" style="width: 20%"></div>
-              </div>
             </div>
             
             <div class="stat-item">
-              <div class="stat-header">
-                <span class="stat-count">XXX人</span>
-                <span class="stat-percent">10%</span>
+              <div class="stat-count">{{ poorCount }}人</div>
+              <div class="progress-bar-container">
+                <div class="progress-bar">
+                  <div class="progress-fill poor-fill" :style="{ width: poorPercent + '%' }"></div>
+                </div>
+                <div class="stat-percent">{{ poorPercent }}%</div>
               </div>
               <div class="stat-label">较差</div>
-              <div class="progress-bar">
-                <div class="progress-fill poor-fill" style="width: 10%"></div>
-              </div>
             </div>
           </div>
         </div>
@@ -124,6 +122,20 @@ import { useUserAnalysis } from './userAnalysis.js'
 const activeTab = ref('wireless')
 const selectedLocation = ref('all')
 const selectedDate = ref('2025-04-01')
+
+// 用户数据变量（写死的展示数据）
+const onlineUsers = ref(12)
+const totalUsers = ref(20)
+const users24G = ref(8)
+const users5G = ref(15)
+
+// 百分比统计数据变量（写死的展示数据）
+const excellentCount = ref(150)
+const excellentPercent = ref(70)
+const goodCount = ref(43)
+const goodPercent = ref(20)
+const poorCount = ref(21)
+const poorPercent = ref(10)
 
 // 从 userAnalysis.js 导入图表配置
 const { 
