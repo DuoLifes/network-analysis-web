@@ -135,4 +135,74 @@
   .chart-description {
     color: var(--text-tertiary);
   }
+
+  /* ==========================================================================
+     用户分析页面主题样式 (从 userAnalysis.scss 迁移)
+     ========================================================================== */
+
+  /* 筛选器主题样式 */
+  .filter-header {
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .left-filters {
+    :deep(.el-tabs__item) {
+      color: var(--text-secondary);
+    }
+
+    :deep(.el-tabs__item.is-active) {
+      color: var(--primary-color, #409eff);
+    }
+  }
+
+  /* 用户统计区域主题样式 */
+  .user-stats-section {
+    background: var(--bg-secondary);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  .grid-container {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+
+  .grid-item-merged,
+  .grid-item {
+    background: var(--bg-primary);
+  }
+
+  /* 标题覆盖层主题样式 */
+  .section-title-overlay {
+    color: var(--text-primary);
+
+    /* 标题装饰条 - 亮色主题 */
+    &::before {
+      background: linear-gradient(135deg, #409eff 0%, #66b3ff 50%, #409eff 100%);
+    }
+  }
+
+  /* 文字主题样式 */
+  .main-title {
+    color: var(--text-primary);
+  }
+
+  .sub-title {
+    color: var(--text-secondary);
+  }
+
+  .stat-count,
+  .stat-percent {
+    color: var(--text-primary);
+  }
+
+  .stat-label {
+    color: var(--text-secondary);
+  }
+
+  /* 进度条主题样式 */
+  .progress-bar {
+    background: var(--border-color-light);
+  }
 } 
