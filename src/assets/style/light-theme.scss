@@ -1,0 +1,138 @@
+// 亮色主题样式文件
+// 仅影响 .chart-container 容器内的元素 
+
+.chart-container.theme-light {
+  // CSS 变量定义 - 亮色主题
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --bg-tertiary: #f5f5f5;
+  --text-primary: #333333;
+  --text-secondary: #666666;
+  --text-tertiary: #999999;
+  --border-color: #e4e7ed;
+  --border-color-light: #ebeef5;
+  --border-color-lighter: #f2f6fc;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --shadow-light: rgba(0, 0, 0, 0.05);
+  
+  // 图表容器背景
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  
+  // 图表布局容器
+  .chart-layout-container {
+    background-color: var(--bg-secondary);
+  }
+  
+  // 图表卡片样式
+  .chart-column-card {
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 8px var(--shadow-light);
+    
+    &:hover {
+      box-shadow: 0 4px 16px var(--shadow-color);
+    }
+  }
+  
+  // 图表头部样式
+  .chart-header {
+    background-color: var(--bg-primary);
+    border-bottom: 1px solid var(--border-color-light);
+    
+    .chart-title {
+      color: var(--text-primary);
+    }
+    
+    .chart-toolbar .toolbar-item {
+      background-color: var(--bg-tertiary);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-color);
+      
+      &:hover {
+        background-color: #409eff;
+        color: #ffffff;
+        border-color: #409eff;
+      }
+    }
+  }
+  
+  // 图表内容区域
+  .chart-content {
+    background-color: var(--bg-primary);
+  }
+  
+  // Element Plus 组件样式覆盖
+  .el-card {
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 8px var(--shadow-light);
+    
+    .el-card__header {
+      background-color: var(--bg-primary);
+      border-bottom: 1px solid var(--border-color-light);
+      color: var(--text-primary);
+    }
+    
+    .el-card__body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+    }
+  }
+  
+  // 下拉选择器样式
+  .el-select {
+    .el-input .el-input__wrapper {
+      background-color: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      box-shadow: none;
+    }
+    
+    .el-input .el-input__inner {
+      color: var(--text-primary);
+    }
+    
+    .el-input:hover .el-input__wrapper,
+    .el-input.is-focus .el-input__wrapper {
+      border-color: #409eff;
+    }
+  }
+  
+  // 按钮样式
+  .el-button {
+    &.is-plain {
+      background-color: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      
+      &:hover {
+        background-color: var(--bg-tertiary);
+        border-color: #409eff;
+        color: #409eff;
+      }
+    }
+  }
+  
+  // 图标按钮样式
+  .el-icon {
+    color: var(--text-secondary);
+    
+    &:hover {
+      color: #409eff;
+    }
+  }
+  
+  // 文本样式
+  .chart-title {
+    color: var(--text-primary);
+  }
+  
+  .chart-subtitle {
+    color: var(--text-secondary);
+  }
+  
+  .chart-description {
+    color: var(--text-tertiary);
+  }
+} 

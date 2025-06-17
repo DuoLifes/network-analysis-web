@@ -16,23 +16,23 @@
 import { ref, onMounted } from 'vue'
 
 const emit = defineEmits(['update:theme'])
-const currentTheme = ref('dark')
+const currentTheme = ref('light')
 
 const handleThemeChange = (theme) => {
   currentTheme.value = theme
-  // 只操作 dashboard-container 的 class
-  const dashboard = document.querySelector('.dashboard-container')
-  if (dashboard) {
-    dashboard.classList.remove('theme-light', 'theme-dark')
-    dashboard.classList.add(`theme-${theme}`)
+  // 只操作 chart-container 的 class
+  const chartContainer = document.querySelector('.chart-container')
+  if (chartContainer) {
+    chartContainer.classList.remove('theme-light', 'theme-dark')
+    chartContainer.classList.add(`theme-${theme}`)
   }
-  localStorage.setItem('dashboard-theme', theme)
+  localStorage.setItem('chart-theme', theme)
   window.dispatchEvent(new CustomEvent('theme-change', { detail: theme }))
   emit('update:theme', theme)
 }
 
 onMounted(() => {
-  const savedTheme = localStorage.getItem('dashboard-theme') || 'dark'
+  const savedTheme = localStorage.getItem('chart-theme') || 'light'
   currentTheme.value = savedTheme
   handleThemeChange(savedTheme)
 })
@@ -43,17 +43,25 @@ onMounted(() => {
   display: flex;
   align-items: center;
 }
+
+/* 主题选择器样式不受主题影响，保持默认样式 */
 :deep(.el-select .el-input .el-input__wrapper) {
-  background-color: var(--bg-primary);
-  border: 1px solid var(--border-color);
+  background-color: #ffffff;
+  border: 1px solid #dcdfe6;
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
+
 :deep(.el-select .el-input .el-input__inner) {
-  color: var(--text-primary);
+  color: #606266;
   transition: color 0.3s ease;
 }
+
 :deep(.el-select .el-input:hover .el-input__wrapper),
 :deep(.el-select .el-input.is-focus .el-input__wrapper) {
   border-color: #409eff;
+}
+
+:deep(.el-select .el-input__suffix) {
+  color: #c0c4cc;
 }
 </style>

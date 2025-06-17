@@ -10,7 +10,7 @@
  * - 确保与系统其他组件的样式一致性
  * 
  * 组件层级：
- * user-analysis-container (页面容器)
+ * chart-container (页面容器)
  *   └── chart-layout-container (布局容器)
  *       └── chart-row-container (行容器)
  *           └── chart-column-card (列容器/卡片)
@@ -49,7 +49,7 @@
  * - 与系统tabs组件保持对齐
  * - 负责页面级布局和背景色
  */
-.user-analysis-container {
+.chart-container {
   min-height: calc(100vh - 200px);
   background-color: #f5f7fa;
   margin: 15px 20px 0 20px;
@@ -207,7 +207,7 @@
  * - 优化触摸体验
  */
 @media (max-width: 576px) {
-  .user-analysis-container {
+  .chart-container {
     margin: 15px 10px 0 10px;
     min-height: calc(100vh - 140px);
   }
@@ -243,7 +243,7 @@
  * - 中等屏幕的优化调整
  */
 @media (min-width: 577px) and (max-width: 768px) {
-  .user-analysis-container {
+  .chart-container {
     min-height: calc(100vh - 150px);
   }
   
@@ -265,7 +265,7 @@
  * - 针对小屏幕笔记本等设备
  */
 @media (max-height: 600px) {
-  .user-analysis-container {
+  .chart-container {
     min-height: auto;
   }
   

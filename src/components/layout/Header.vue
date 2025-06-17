@@ -86,6 +86,9 @@ const handleSetLanguage = (lang) => {
         box-sizing: border-box;
         padding: 0 20px;
         color: #fff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         .header-left {
             padding-right: 50px;
             .logo {
